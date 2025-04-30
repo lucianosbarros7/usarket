@@ -2,7 +2,7 @@ const axios = require('axios');
 
 let cachedData = null;
 let lastFetch = 0;
-const CACHE_DURATION = 60000; // 1 minuto
+const CACHE_DURATION = 60000;
 
 module.exports = async function handler(req, res) {
   const now = Date.now();
@@ -25,4 +25,4 @@ module.exports = async function handler(req, res) {
     prices: cachedData,
     updatedAt: new Date(lastFetch).toISOString(),
   });
-}
+};
