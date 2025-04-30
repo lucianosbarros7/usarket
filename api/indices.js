@@ -1,10 +1,10 @@
-import axios from 'axios';
+const axios = require('axios');
 
 let cachedData = null;
 let lastFetch = 0;
 const CACHE_DURATION = 60000; // 1 minuto
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   const now = Date.now();
 
   if (!cachedData || now - lastFetch > CACHE_DURATION) {
@@ -23,6 +23,6 @@ export default async function handler(req, res) {
 
   res.status(200).json({
     prices: cachedData,
-    updatedAt: new Date(lastFetch).toISOString()
+    updatedAt: new Date(lastFetch).toISOString(),
   });
 }
